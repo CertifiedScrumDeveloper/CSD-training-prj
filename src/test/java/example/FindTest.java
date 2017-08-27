@@ -21,13 +21,13 @@ public class FindTest {
         assertEquals("场地2", court.getName());
     }
 
-   /* @Test
+    @Test
     public void GIEN_场地列表_WHEN_用户查找最近场地_THEN_返回最近场地2() {
 
         Player player = new Player();
 
-        Court court = player.searchNearestCourt(5, 5);
+        Court court = player.searchNearestCourt(18, 5);
 
-        assertEquals("场地1", court.getName());
-    }*/
+        assertEquals("场地2", court.getName());
+    }
 }

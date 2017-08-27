@@ -10,11 +10,11 @@ public class Player {
         ArrayList<Court> courtlist = CourtManager.getAllCourts();
 
 
-        Court court =new Court();
-        int media= (courtlist.get(0).getLong() - longitude) + (courtlist.get(0).getLat() - latitude);
+        Court court =courtlist.get(0);
+        int media= Math.abs(courtlist.get(0).getLong() - longitude) +Math.abs (courtlist.get(0).getLat() - latitude);
 
         for (int i = 1; i < courtlist.size() ; i++) {
-            int d = (courtlist.get(i).getLong() - longitude) + (courtlist.get(i).getLat() - latitude);
+            int d = Math.abs(courtlist.get(i).getLong() - longitude) +Math.abs (courtlist.get(i).getLat() - latitude);
             if (d <= media)
                 media=d;
                 court = courtlist.get(i);
