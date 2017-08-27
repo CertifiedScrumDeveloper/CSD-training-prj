@@ -8,7 +8,23 @@
 
   <name>Simple Java Maven Project</name>
 
-  <properties>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>zalimaven1</id>
+            <name>zaliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>zalimaven2</id>
+            <name>zaliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+
+
+
+    <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sonar.language>java</sonar.language>
     <sonar.dynamicAnalysis>true</sonar.dynamicAnalysis>
@@ -50,7 +66,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
-        <version>2.6</version>
+        <version>2.7</version>
       </plugin>
   </plugins>
   </reporting>
