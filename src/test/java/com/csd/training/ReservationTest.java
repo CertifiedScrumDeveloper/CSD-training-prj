@@ -32,6 +32,13 @@ public class ReservationTest {
         assertEquals("fail", reservation.reservationPlace(player,place,1,3));
     }
 
+    @Test
+    public void GIVEN_player_position_WHEN_get_nearest_court_THEN_return_court(){
+        Reservation reservation = new Reservation();
+        Court court = reservation.getNearestCourt(100,100);
+        assertEquals("场馆A", court.getName());
+    }
+
     private Player createPlayer(){
         Player player = new Player();
         return player;
