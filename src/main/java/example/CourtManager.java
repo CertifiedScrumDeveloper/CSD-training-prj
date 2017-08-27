@@ -20,15 +20,21 @@ public class CourtManager {
         int date = reservation.getDate();
         int slot = reservation.getSlot();
         int courtNo = reservation.getCourtNo();
+
+        boolean ava= query(date,slot,courtNo);
+        if (!ava) return false;
+
         String name = reservation.getName();
-        if (courtOrder[courtNo][date][slot] == 1) return false;
-        else {
-            courtOrder[courtNo][date][slot] = 1;
-            int key = date * 10 + slot;
-            courtOrderNameMap.put(key, name);
-        }
+        courtOrder[courtNo][date][slot] = 1;
+        int key = date * 10 + slot;
+        courtOrderNameMap.put(key, name);
         return true;
     }
+
+    private boolean query(int date, int slot, int courtNo) {
+        return courtOrder[courtNo][date][slot] == 0;
+    }
+
 
     public List<Integer> getAvailableCourts(Integer date, Integer courtNo) {
         List<Integer> list = new ArrayList<Integer>();
@@ -53,5 +59,21 @@ public class CourtManager {
             }
         }
         return nearestCourtNo;
+    }
+
+    public boolean makeRecurringReservation(Reservation reservation, int period, int times) {
+        int date = reservation.getDate();
+        int slot = reservation.getSlot();
+        int courtNo = reservation.getCourtNo();
+        for (int i = 0; i < times; i++) {
+            if (!query(date,slot,courtNo)) return false;
+            date += period;
+        }
+
+        for (int i = 0; i < times; i++) {
+            makeReservation(reservation);
+            reservation.setDate(reservation.getDate()+period);
+        }
+        return true;
     }
 }
