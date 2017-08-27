@@ -2,6 +2,7 @@ package example;
 
 import static org.junit.Assert.*;
 
+import CorutList.CourtList;
 import org.junit.Test;
 
 import java.util.Date;
@@ -21,16 +22,24 @@ public class PlayerTest {
         Court court = new Court("C1");
         Date date = new Date();
         player.reserve(court, date);
-        Reservation reservation=  player.getReservation();
+        Reservation reservation = player.getReservation();
 
         //then
         assertEquals("C1", reservation.getCourtId());
         assertEquals("jack", reservation.getPlayerName());
-        assertEquals(date,reservation.getDate());
+        assertEquals(date, reservation.getDate());
     }
+
     @Test
-    public void GIVEN_a_player_WHEN_find_court_THEN_get_a_court(){
+    public void GIVEN_a_court_list_WHEN_find_court_by_position_THEN_get_a_court() {
 
+        //given
+        int position = 5;
+
+        //when
+        String courntId = CourtList.getCourt(position).getId();
+
+        //then
+        assertEquals("C1", courntId);
     }
-
 }
