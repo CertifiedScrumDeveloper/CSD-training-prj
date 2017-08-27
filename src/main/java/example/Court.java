@@ -5,6 +5,7 @@ package example;
  */
 public class Court {
     private String _id;
+    private int _position;
 
     public Court(String id){
         this._id = id;
@@ -13,4 +14,6 @@ public class Court {
     public String getId(){
         return  this._id;
     }
+
+    public int getPosition() { return _position; }
 }

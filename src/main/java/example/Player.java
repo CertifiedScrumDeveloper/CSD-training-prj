@@ -23,8 +23,10 @@ public class Player {
               this.name = name;
        }
 
-       public void reserve(Court court, Date date) {
-              this.reservation = new Reservation(court.getId(), name, date);
+       public Reservation reserve(String courtId, Date date, int duration) {
+              this.reservation = new Reservation(courtId, name, date,duration);
+              ReservationRepo.add(reservation);
+              return this.reservation;
        }
 
        public Reservation getReservation() {

@@ -1,11 +1,11 @@
 package example;
 
-import static org.junit.Assert.*;
-
-import CorutList.CourtList;
 import org.junit.Test;
 
 import java.util.Date;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by zhenghp on 2017/8/27.
@@ -19,27 +19,50 @@ public class PlayerTest {
         Player player = new Player("jack");
 
         //when
-        Court court = new Court("C1");
+        // Court court = new Court("C1");
         Date date = new Date();
-        player.reserve(court, date);
-        Reservation reservation = player.getReservation();
+        Reservation reservation = player.reserve("C1", date, 3);
 
         //then
         assertEquals("C1", reservation.getCourtId());
         assertEquals("jack", reservation.getPlayerName());
         assertEquals(date, reservation.getDate());
+        assertEquals(3, reservation.getDuration());
+
     }
 
     @Test
-    public void GIVEN_a_court_list_WHEN_find_court_by_position_THEN_get_a_court() {
+    public void 当用户预订成功后预订库可以查到信息()
+    {
+        //given
+        Player player = new Player("jack");
+
+        //when
+        Date date = new Date();
+        player.reserve("C1", date, 3);
+        List<Reservation> reservation = ReservationRepo.getAll();
+        //then
+        boolean reservaFlag = false;
+        for (int i = 0; i < reservation.size(); i++) {
+            if ("jack".equals(reservation.get(i).getPlayerName())) {
+                reservaFlag = true;
+            }
+        }
+        assertEquals(true, reservaFlag);
+    }
+
+
+    @Test
+    public void 根据用户选择的位置获取最近的位置() {
 
         //given
         int position = 5;
 
         //when
-        String courntId = CourtList.getCourt(position).getId();
+        String courntId = CourtRepo.getNearest(position).getId();
 
         //then
-        assertEquals("C1", courntId);
+        assertEquals("C5", courntId);
     }
+
 }
