@@ -1,16 +1,22 @@
 package tennis;
 
-import java.util.Date;
-
 /**
  * Created by linyan on 27/08/2017.
  */
 public class Reservation {
 
     private Court court;
-    private Date date;
+    private String date;
     private double price;
     private boolean isAvailable;
+
+    public Reservation(Court court, String s, boolean b) {
+
+    }
+
+    public Reservation() {
+
+    }
 
     public Court getCourt() {
         return court;
@@ -20,11 +26,11 @@ public class Reservation {
         this.court = court;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String  date) {
         this.date = date;
     }
 

@@ -15,12 +15,12 @@ public class ReservationTest {
 
         Reservation reservation = new Reservation();
         Date date = new Date();
-        reservation.setDate(date);
+        reservation.setDate("2017-8-8, 12:00");
         reservation.setAvailable(true);
         reservation.setCourt(court);
         reservation.setPrice(100);
 
-        Assert.assertEquals(date, reservation.getDate());
+        Assert.assertEquals("2017-8-8, 12:00", reservation.getDate());
         Assert.assertEquals(true, reservation.isAvailable());
         Assert.assertEquals(court, reservation.getCourt());
         Assert.assertEquals((double)100, reservation.getPrice(), 0);
