@@ -32,4 +32,10 @@ public class TennisPlayerTest {
         courtManager.makeReservation(new Reservation(826,1,0,"steve"));
         Assert.assertArrayEquals(new Integer[]{0,2,3,4,5,6,7},courtManager.getAvailableCourts(826,0).toArray());
     }
+
+    @Test
+    public void 查找最近的场地() {
+        CourtManager courtManager = new CourtManager();
+        Assert.assertEquals(5,courtManager.getNearestCourt(5));
+    }
 }
