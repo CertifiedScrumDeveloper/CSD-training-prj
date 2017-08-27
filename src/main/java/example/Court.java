@@ -16,4 +16,8 @@ public class Court {
     }
 
     public int getPosition() { return _position; }
+
+    public void set_position(int _position) {
+        this._position = _position;
+    }
 }

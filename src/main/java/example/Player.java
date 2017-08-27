@@ -29,7 +29,7 @@ public class Player {
               return this.reservation;
        }
 
-       public Reservation getReservation() {
-              return reservation;
+       public Court findNearestCourt(int playerPosition){
+              return CourtRepo.getNearest(playerPosition);
        }
 }
