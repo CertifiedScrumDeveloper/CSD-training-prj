@@ -8,7 +8,7 @@ import java.util.Date;
 public class Player {
 
 
-       private String reserve;
+       private Reservation reservation;
 
        public Player(String name){
              this.name= name;
@@ -24,10 +24,10 @@ public class Player {
        }
 
        public void reserve(Court court, Date date) {
-              reserve = court.getId() +","+ date.toString();
+              this.reservation = new Reservation(court.getId(), name, date);
        }
 
-       public String getReserve() {
-              return reserve;
+       public Reservation getReservation() {
+              return reservation;
        }
 }

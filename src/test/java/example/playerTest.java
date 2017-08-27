@@ -3,11 +3,8 @@ package example;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import sun.util.calendar.BaseCalendar;
 
 import java.util.Date;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by zhenghp on 2017/8/27.
@@ -24,10 +21,12 @@ public class PlayerTest {
         Court court = new Court("C1");
         Date date = new Date();
         player.reserve(court, date);
+        Reservation reservation=  player.getReservation();
 
         //then
-        assertEquals("C1," + date.toString(), player.getReserve());
-
+        assertEquals("C1", reservation.getCourtId());
+        assertEquals("jack", reservation.getPlayerName());
+        assertEquals(date,reservation.getDate());
     }
 
 }
