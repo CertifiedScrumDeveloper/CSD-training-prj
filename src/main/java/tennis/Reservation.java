@@ -1,5 +1,9 @@
 package tennis;
 
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 /**
  * Created by linyan on 27/08/2017.
  */
@@ -50,5 +54,13 @@ public class Reservation {
 
     public void setAvailable(boolean available) {
         isAvailable = available;
+    }
+
+    public static Map<Double, List<Reservation>> calDistanceAndAvailableCourt(Position position, List<Reservation> reservationList ) {
+        Map<Double, List<Reservation>> reservationMap =
+                reservationList.stream().filter(item-> item.isAvailable())
+                        .collect(Collectors.groupingBy(item -> position.calculateDistance(item.getCourt().getCourtPosition())));
+
+        return reservationMap;
     }
 }

@@ -52,10 +52,4 @@ public class Player {
         res.setAvailable(false);
         return true;
     }
-
-    public double calculateDistance(Position anotherPosition) {
-        Position curPosition = getCurrentPosition();
-        return  Math.sqrt(Math.pow((curPosition.getLatitude() - anotherPosition.getLatitude()),2) +
-            Math.pow(curPosition.getLatitude() - anotherPosition.getLongtitude(),2));
-    }
 }

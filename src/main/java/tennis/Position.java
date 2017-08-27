@@ -28,7 +28,10 @@ public class Position {
     private long latitude;
     private long longtitude;
 
-
+    public double calculateDistance(Position anotherPosition) {
+        return  Math.sqrt(Math.pow((this.getLatitude() - anotherPosition.getLatitude()),2) +
+                Math.pow(this.getLatitude() - anotherPosition.getLongtitude(),2));
+    }
 
 
 }
