@@ -6,6 +6,8 @@ package tennis;
  */
 public class Player {
 
+    private GPSService gpsService = new GPSService();
+
     private String name;
 
     private int id;
@@ -27,9 +29,8 @@ public class Player {
     }
 
     public Position getCurrentPosition() {
-        return new Position(35, 35);
+        return gpsService.getCurrentPosition();
     }
-
 
     public int getId() {
         return id;
@@ -48,6 +49,13 @@ public class Player {
     }
 
     public boolean reserve(Reservation res) {
+        res.setAvailable(false);
         return true;
+    }
+
+    public double calculateDistance(Position anotherPosition) {
+        Position curPosition = getCurrentPosition();
+        return  Math.sqrt(Math.pow((curPosition.getLatitude() - anotherPosition.getLatitude()),2) +
+            Math.pow(curPosition.getLatitude() - anotherPosition.getLongtitude(),2));
     }
 }

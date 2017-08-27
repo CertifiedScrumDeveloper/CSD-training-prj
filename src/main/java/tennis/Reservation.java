@@ -10,8 +10,10 @@ public class Reservation {
     private double price;
     private boolean isAvailable;
 
-    public Reservation(Court court, String s, boolean b) {
-
+    public Reservation(Court court, String date, boolean isAvailable) {
+        this.court = court;
+        this.date = date;
+        this.isAvailable = isAvailable;
     }
 
     public Reservation() {
