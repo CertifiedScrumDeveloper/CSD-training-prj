@@ -26,6 +26,16 @@ public class PlayerTest {
 
         boolean result = player.reserve(res);
 
-
+        Assert.assertEquals(true, result);
     }
+
+    @Test
+    public void GIVEN_Normal_Player_WHEN_reserve_Available_count_THEN_should_return_Success1(){
+        Player player = new Player(1, "PlayerA", false);
+        Court courtA = new Court(1,"CourtA",new Position(35,35));
+        Reservation res = new Reservation(courtA, "2017-8-8, 12:00", true);
+
+        boolean result = player.reserve(res);
+    }
+
 }
