@@ -14,7 +14,10 @@ public class CourtManager {
 
     private Map<Integer, String> courtOrderNameMap = new HashMap<Integer, String>();
 
-    public boolean makeReservation(Integer date,Integer slot, String name) {
+    public boolean makeReservation(Reservation reservation) {
+        int date = reservation.getDate();
+        int slot = reservation.getSlot();
+        String name = reservation.getName();
         if (courtOrder[date][slot] == 1) return false;
         else {
             courtOrder[date][slot] = 1;
