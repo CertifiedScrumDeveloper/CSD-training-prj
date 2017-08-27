@@ -12,17 +12,17 @@ public class Court {
     private int lat;
 
 
-    public void updateState(int start, int end, boolean b) {
+    public void updateState(int startTime, int endTime, boolean isAvailable) {
 
-        for (int i = start; i < end; i++) {
-            result[i] = b;
+        for (int i = startTime; i < endTime; i++) {
+            result[i] = isAvailable;
         }
 
     }
 
-    public boolean getState(int start, int end) {
+    public boolean getState(int startTime, int endTime) {
         boolean innerResult = true;
-        for (int i = start; i < end; i++) {
+        for (int i = startTime; i < endTime; i++) {
             innerResult = innerResult && result[i];
 
 
