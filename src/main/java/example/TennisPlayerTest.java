@@ -23,13 +23,13 @@ public class TennisPlayerTest {
     @Test
     public void 查询可用时间() {
         CourtManager courtManager = new CourtManager();
-        Assert.assertArrayEquals(new Integer[]{0,1,2,3,4,5,6,7},courtManager.getAvailableCourts(826).toArray());
+        Assert.assertArrayEquals(new Integer[]{0,1,2,3,4,5,6,7},courtManager.getAvailableCourts(826,0).toArray());
     }
 
     @Test
     public void 查询steve订掉1后的可用时间() {
         CourtManager courtManager = new CourtManager();
         courtManager.makeReservation(new Reservation(826,1,0,"steve"));
-        Assert.assertArrayEquals(new Integer[]{0,2,3,4,5,6,7},courtManager.getAvailableCourts(826).toArray());
+        Assert.assertArrayEquals(new Integer[]{0,2,3,4,5,6,7},courtManager.getAvailableCourts(826,0).toArray());
     }
 }
