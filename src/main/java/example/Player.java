@@ -6,6 +6,8 @@ import java.util.ArrayList;
  * Created by 84842 on 2017/8/27.
  */
 public class Player {
+    private boolean premium;
+
     public Court searchNearestCourt(int longitude, int latitude) {
         ArrayList<Court> courtlist = CourtManager.getAllCourts();
 
@@ -25,4 +27,11 @@ public class Player {
     }
 
 
+    public void setPremium(boolean premium) {
+        this.premium = premium;
+    }
+
+    public boolean getPremium() {
+        return this.premium;
+    }
 }

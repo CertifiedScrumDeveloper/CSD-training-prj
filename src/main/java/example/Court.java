@@ -7,23 +7,23 @@ public class Court {
 
     private String name;
 
-   private  boolean []result = new boolean[24];
+   private  boolean [][]result = new boolean[365][24];
     private int lon;
     private int lat;
 
 
-    public void updateState(int startTime, int endTime, boolean isAvailable) {
+    public void updateState(int dayNum ,int startTime, int endTime, boolean isAvailable) {
 
         for (int i = startTime; i < endTime; i++) {
-            result[i] = isAvailable;
+            result[dayNum][i] = isAvailable;
         }
 
     }
 
-    public boolean getState(int startTime, int endTime) {
+    public boolean getState(int dayNum,int startTime, int endTime) {
         boolean innerResult = true;
         for (int i = startTime; i < endTime; i++) {
-            innerResult = innerResult && result[i];
+            innerResult = innerResult && result[dayNum][i];
 
 
         }

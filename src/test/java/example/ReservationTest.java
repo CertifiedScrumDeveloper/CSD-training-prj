@@ -52,12 +52,12 @@ public class ReservationTest {
     public void GIVEN_场地1_10_11_可用_WHEN_用户预订场地1_时间10_11_THEN_预订成功() {
         Court court = new Court();
         court.setName("场地1");
-        court.updateState(10, 11, true);
+        court.updateState(32,10, 11, true);
 
         Player player = new Player();
 
         ReservationService reservationService = new ReservationService();
-        boolean result = reservationService.book(player, court, 10, 11);
+        boolean result = reservationService.book(player, court,32, 10, 11);
 
         assertEquals(true, result);
     }
@@ -66,12 +66,12 @@ public class ReservationTest {
     public void GIVEN_场地1_10_11_不可用_WHEN_用户预订场地1_时间10_11_THEN_预订不成功() {
         Court court = new Court();
         court.setName("场地1");
-        court.updateState(10, 11, false);
+        court.updateState(32,10, 11, false);
 
         Player player = new Player();
 
         ReservationService reservationService = new ReservationService();
-        boolean result = reservationService.book(player, court, 10, 11);
+        boolean result = reservationService.book(player, court,32, 10, 11);
 
         assertEquals(false, result);
     }
@@ -80,14 +80,47 @@ public class ReservationTest {
     public void GIVEN_场地1_9_10_可用_10_11_不可用_WHEN_用户预订场地1_时间9_10_THEN_预订成功() {
         Court court = new Court();
         court.setName("场地1");
-        court.updateState(9, 10, true);
-        court.updateState(10, 11, false);
+        court.updateState(32,9, 10, true);
+        court.updateState(32,10, 11, false);
 
         Player player = new Player();
 
         ReservationService reservationService = new ReservationService();
-        boolean result = reservationService.book(player, court, 9, 10);
+        boolean result = reservationService.book(player, court, 32,9, 10);
 
         assertEquals(true, result);
     }
+
+    @Test
+    public void GIVEN_normal_player_WHEN_book_recurring_THEN_failed(){
+        Player player = new Player();
+        player.setPremium(false);
+
+        Court court = new Court();
+        court.setName("场地1");
+        court.updateState(32,9, 10, true);
+        court.updateState(32,10, 11, false);
+
+        ReservationService reservationService = new ReservationService();
+        boolean result = reservationService.bookRecurring(player, court, 32, 7, 10, 11);
+
+        assertEquals(false, result);
+    }
+
+    @Test
+    public void GIVEN_preium_player_WHEN_book_every_7_dyas_THEN_success(){
+        Player player = new Player();
+        player.setPremium(true);
+
+        Court court = new Court();
+        court.setName("场地1");
+        court.updateState(32,9, 10, true);
+        court.updateState(32,10, 11, false);
+
+        ReservationService reservationService = new ReservationService();
+        boolean result = reservationService.bookRecurring(player, court, 32, 7, 10, 11);
+
+        assertEquals(true, result);
+    }
+
 }
