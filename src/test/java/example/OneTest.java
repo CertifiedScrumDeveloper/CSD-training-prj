@@ -1,7 +1,8 @@
 package example;
 
-import static org.junit.Assert.*;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class OneTest {
   @Test
@@ -12,7 +13,6 @@ public class OneTest {
 
   @Test
   public void testSeconde() {
-
     assertEquals(1, 1);
   }
 }
