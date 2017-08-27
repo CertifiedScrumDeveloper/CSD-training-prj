@@ -8,6 +8,8 @@ public class Court {
     private String name;
 
    private  boolean []result = new boolean[24];
+    private int lon;
+    private int lat;
 
 
     public void updateState(int start, int end, boolean b) {
@@ -31,5 +33,24 @@ public class Court {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setLocation(int longitude, int latitude)
+    {
+        this.lon=longitude;
+        this.lat=latitude;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getLong() {
+
+        return this.lon;
+    }
+
+    public int getLat() {
+        return this.lat;
     }
 }
