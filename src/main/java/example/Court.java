@@ -5,6 +5,7 @@ package example;
  */
 public class Court {
     private String _id;
+
     public Court(String id){
         this._id = id;
     }

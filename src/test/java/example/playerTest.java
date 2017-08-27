@@ -28,5 +28,9 @@ public class PlayerTest {
         assertEquals("jack", reservation.getPlayerName());
         assertEquals(date,reservation.getDate());
     }
+    @Test
+    public void GIVEN_a_player_WHEN_find_court_THEN_get_a_court(){
+
+    }
 
 }
