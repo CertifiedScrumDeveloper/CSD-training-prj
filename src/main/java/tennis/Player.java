@@ -1,6 +1,8 @@
 package tennis;
 
 
+import java.util.List;
+
 /**
  * Created by linyan on 27/08/2017.
  */
@@ -51,5 +53,12 @@ public class Player {
     public boolean reserve(Reservation res) {
         res.setAvailable(false);
         return true;
+    }
+
+    public boolean recurringReserve(int interval, String startDate, int times) {
+        List<Reservation> reservationList = Reservation.getAvailableReservationList();
+
+        return  true;
+
     }
 }

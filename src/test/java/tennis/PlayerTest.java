@@ -94,6 +94,27 @@ public class PlayerTest {
 
     }
 
+    @Test
+    public void GIVEN_prenium_player_WHEN_recuirring_reserve_AND_freqency_7_AND_start_from_201788_AND_times_4_THEN_it_should_be_success(){
+        Player player = new Player(1, "PlayerA", true);
+        Court courtA = new Court(1,"CourtA",new Position(40,35));
+        List<Reservation> reservationList = Arrays.asList(
+                new Reservation(courtA, "2017-8-7, 12:00", true),
+                new Reservation(courtA, "2017-8-8, 12:00", true),
+                new Reservation(courtA, "2017-8-10, 12:00", true),
+                new Reservation(courtA, "2017-8-15, 12:00", true),
+                new Reservation(courtA, "2017-8-22, 12:00", false),
+                new Reservation(courtA, "2017-8-29, 12:00", true),
+                new Reservation(courtA, "2017-9-5, 12:00", true),
+                new Reservation(courtA, "2017-9-12, 12:00", true)
+        );
+
+        boolean result = player.recurringReserve(7,"2017-8-8, 12:00", 4);
+
+
+    }
+
+
     private List<Reservation> initReservation() {
         Court courtA = new Court(1,"CourtA",new Position(40,35));
         Court courtB = new Court(1,"CourtB",new Position(50,35));

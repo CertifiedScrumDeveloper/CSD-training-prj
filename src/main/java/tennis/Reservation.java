@@ -1,5 +1,6 @@
 package tennis;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -62,5 +63,19 @@ public class Reservation {
                         .collect(Collectors.groupingBy(item -> position.calculateDistance(item.getCourt().getCourtPosition())));
 
         return reservationMap;
+    }
+
+    public static List<Reservation> getAvailableReservationList() {
+        Court courtA = new Court(1,"CourtA",new Position(40,35));
+        return Arrays.asList(
+                new Reservation(courtA, "2017-8-7, 12:00", true),
+                new Reservation(courtA, "2017-8-8, 12:00", true),
+                new Reservation(courtA, "2017-8-10, 12:00", true),
+                new Reservation(courtA, "2017-8-15, 12:00", true),
+                new Reservation(courtA, "2017-8-22, 12:00", false),
+                new Reservation(courtA, "2017-8-29, 12:00", true),
+                new Reservation(courtA, "2017-9-5, 12:00", true),
+                new Reservation(courtA, "2017-9-12, 12:00", true)
+        );
     }
 }
