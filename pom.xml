@@ -8,7 +8,7 @@
 
   <name>Simple Java Maven Project</name>
 
-    <pluginRepositories>
+  <!--  <pluginRepositories>
         <pluginRepository>
             <id>zalimaven1</id>
             <name>zaliyun maven</name>
@@ -20,7 +20,7 @@
             <url>http://maven.aliyun.com/nexus/content/groups/public</url>
         </pluginRepository>
     </pluginRepositories>
-
+-->
 
 
 
