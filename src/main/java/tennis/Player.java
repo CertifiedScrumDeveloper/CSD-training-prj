@@ -1,7 +1,11 @@
 package tennis;
 
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by linyan on 27/08/2017.
@@ -55,10 +59,33 @@ public class Player {
         return true;
     }
 
-    public boolean recurringReserve(int interval, String startDate, int times) {
+    public List<Reservation> recurringReserve(int interval, String startDate, int times) {
         List<Reservation> reservationList = Reservation.getAvailableReservationList();
+        List<Reservation> successReservationList = new ArrayList<>();
 
-        return  true;
+        DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm");
+        LocalDateTime currentDateTime = LocalDateTime.parse(startDate, formater);
+        for(int i= 0; i<times; i++){
+            Reservation currentReservation = findAvailabeReservationAndReserve(reservationList, formater, currentDateTime);
+            if(currentReservation.getDate() != null)
+                successReservationList.add(currentReservation);
+            currentDateTime = currentDateTime.plusDays(interval);
+        }
+        return successReservationList;
 
+    }
+
+    private Reservation findAvailabeReservationAndReserve(List<Reservation> reservationList, DateTimeFormatter formater, LocalDateTime currentDateTime) {
+        Optional<Reservation> currentReservation = reservationList.stream().filter(reservation->
+                currentDateTime.equals(LocalDateTime.parse(reservation.getDate(), formater)) &&
+                        reservation.isAvailable()
+        ).findFirst();
+
+        if(currentReservation.isPresent()) {
+            this.reserve(currentReservation.get());
+            return currentReservation.get();
+        }
+
+        return new Reservation();
     }
 }

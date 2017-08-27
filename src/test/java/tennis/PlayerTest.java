@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Created by linyan on 27/08/2017.
@@ -97,23 +98,36 @@ public class PlayerTest {
     @Test
     public void GIVEN_prenium_player_WHEN_recuirring_reserve_AND_freqency_7_AND_start_from_201788_AND_times_4_THEN_it_should_be_success(){
         Player player = new Player(1, "PlayerA", true);
-        Court courtA = new Court(1,"CourtA",new Position(40,35));
-        List<Reservation> reservationList = Arrays.asList(
-                new Reservation(courtA, "2017-8-7, 12:00", true),
-                new Reservation(courtA, "2017-8-8, 12:00", true),
-                new Reservation(courtA, "2017-8-10, 12:00", true),
-                new Reservation(courtA, "2017-8-15, 12:00", true),
-                new Reservation(courtA, "2017-8-22, 12:00", false),
-                new Reservation(courtA, "2017-8-29, 12:00", true),
-                new Reservation(courtA, "2017-9-5, 12:00", true),
-                new Reservation(courtA, "2017-9-12, 12:00", true)
-        );
 
-        boolean result = player.recurringReserve(7,"2017-8-8, 12:00", 4);
+        List<Reservation> successReservationList = player.recurringReserve(7,"2017-08-08, 12:00", 4);
+
+        Optional<Reservation> notExistedReservation =successReservationList.stream()
+                .filter(reservation -> reservation.getDate().equals("2017-08-07, 12:00")).findFirst();
+        Assert.assertFalse(notExistedReservation.isPresent());
 
 
+        Optional<Reservation> notExistedReservation2 =successReservationList.stream()
+                .filter(reservation -> reservation.getDate().equals("2017-08-10, 12:00")).findFirst();
+        Assert.assertFalse(notExistedReservation2.isPresent());
+
+        Optional<Reservation> ExistedReservation =successReservationList.stream()
+                .filter(reservation -> reservation.getDate().equals("2017-08-08, 12:00")).findFirst();
+        Assert.assertTrue(ExistedReservation.isPresent());
+
+        Optional<Reservation> ExistedReservation2 =successReservationList.stream()
+                .filter(reservation -> reservation.getDate().equals("2017-08-22, 12:00")).findFirst();
+        Assert.assertFalse(ExistedReservation2.isPresent());
     }
 
+//    @Test
+//    public void GIVEN_prenium_player_WHEN_recuirring_reserve_AND_freqency_7_AND_start_from_201788_AND_times_4_THEN_it_should_be_success(){
+//        Player player = new Player(1, "PlayerA", true);
+//
+//        boolean result = player.recurringReserve(7,"2017-08-08, 12:00", 4);
+//
+//        Assert.assertTrue(result);
+//
+//    }
 
     private List<Reservation> initReservation() {
         Court courtA = new Court(1,"CourtA",new Position(40,35));
